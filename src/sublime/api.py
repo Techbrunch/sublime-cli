@@ -91,19 +91,19 @@ class Sublime(object):
 
         if request_type == 'GET':
             response = self.session.get(
-                url, headers=headers, params=params, json=json
+                url, headers=headers, params=params, json=json, verify=False
             )
         elif request_type == 'POST':
             response = self.session.post(
-                    url, headers=headers, json=json
+                    url, headers=headers, json=json, verify=False
             )
         elif request_type == 'PATCH':
             response = self.session.patch(
-                    url, headers=headers, json=json
+                    url, headers=headers, json=json, verify=False
             )
         elif request_type == 'DELETE':
             response = self.session.delete(
-                    url, headers=headers, params=params
+                    url, headers=headers, params=params, verify=False
             )
         else:
             raise NotImplementedError("Method {} is not implemented", request_type)
@@ -173,7 +173,7 @@ class Sublime(object):
         :param message_type: The type of message from the perspective of your organization (inbound, internal, outbound)
         :type message_type: str
         :rtype: dict
-        
+
         """
 
         # LOGGER.debug("Creating a message data model...")
@@ -215,7 +215,7 @@ class Sublime(object):
         :type run_all_insights: bool
 
         """
-        
+
         # LOGGER.debug("Analyzing message data model...")
 
         body = {
